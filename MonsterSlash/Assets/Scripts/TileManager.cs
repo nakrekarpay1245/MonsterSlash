@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TileManager : MonoSingleton<TileManager>
@@ -83,4 +84,11 @@ public class TileManager : MonoSingleton<TileManager>
     }
 
 
+    public Tile GetNearestTile(Vector3 position)
+    {
+        Tile nearestTile = _activeTileList.OrderBy(tile =>
+            Vector3.Distance(tile.transform.position, position)).FirstOrDefault();
+
+        return nearestTile;
+    }
 }
