@@ -64,7 +64,6 @@ public class TileManager : MonoSingleton<TileManager>
                 generatedTile.TileGridPosition = tileGridPosition;
 
                 generatedTile.name = "Tile " + index;
-                //generatedTile.SetIndex(index);
                 index++;
 
                 _tileGrid[x, y] = generatedTile;
@@ -72,7 +71,7 @@ public class TileManager : MonoSingleton<TileManager>
 
                 if (playerCharacterPosition.x == x && playerCharacterPosition.y == y)
                 {
-                    //PlayerCharacter.singleton.transform.position = generatedTile.transform.position;
+                    PlayerCharacter.singleton.transform.position = generatedTile.transform.position;
                     generatedTile.TileState = TileState.Player;
                 }
                 else

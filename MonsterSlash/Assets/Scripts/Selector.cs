@@ -89,7 +89,7 @@ public class Selector : MonoBehaviour
                 selectedTiles[0].TileState = TileState.Empty;
                 selectedTiles[0].EmptyTile();
                 selectedTiles.Remove(selectedTiles[0]);
-                //PlayerCharacter.singleton.MoveToPositionsSmoothly(selectedTiles);
+                PlayerCharacter.singleton.MoveToPositionsSmoothly(selectedTiles);
             }
             ClearSelectedTiles();
         }

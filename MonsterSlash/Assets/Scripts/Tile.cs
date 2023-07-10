@@ -24,9 +24,6 @@ public class Tile : MonoBehaviour
         set { _monster = value; }
     }
 
-
-    [SerializeField]
-    private MonsterType _monsterType;
     public MonsterType MonsterType
     {
         get { return _monster.MonsterType; }
@@ -50,34 +47,15 @@ public class Tile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //public void SetMonster(Monster newMonster)
-    //{
-    //    if (newMonster != null)
-    //    {
-    //        EmptyTile();
-    //        monster = newMonster;
-    //    }
-    //}
-
     //public void FallMonster()
     //{
     //    monster.Fall();
     //}
 
-    //public Monster GetMonster()
-    //{
-    //    return monster;
-    //}
-
-    //public MonsterType GetMonsterType()
-    //{
-    //    return monster.GetMonsterType();
-    //}
-
-    //public void TakeDamage()
-    //{
-    //    monster.TakeDamage();
-    //}
+    public void TakeDamage()
+    {
+        _monster.TakeDamage();
+    }
 
     public void EmptyTile()
     {
