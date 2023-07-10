@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tile : MonoBehaviour, IDamagable, ISelectable, IFallable
+public class Tile : MonoBehaviour, IDamagable, ISelectable, IMoveable
 {
     private TileState _tileState;
     public TileState TileState
@@ -41,9 +41,9 @@ public class Tile : MonoBehaviour, IDamagable, ISelectable, IFallable
         _spriteRendererComponent = GetComponent<SpriteRenderer>();
     }
 
-    public void Fall()
+    public void Move(Vector2 targetPosition)
     {
-        _monster.Fall();
+        _monster.Move(targetPosition);
     }
 
     public void TakeDamage(int damage)

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class TileManager : MonoSingleton<TileManager>
@@ -110,7 +111,7 @@ public class TileManager : MonoSingleton<TileManager>
                         if (downTile.TileState == TileState.Empty)
                         {
                             //Debug.Log(upTile.name + " down is empty!");
-                            upTile.Fall();
+                            upTile.Move(downTile.transform.position);
                             downTile.Monster = upTile.Monster;
                             downTile.TileState = TileState.Monster;
                             upTile.Monster = null;
@@ -126,8 +127,7 @@ public class TileManager : MonoSingleton<TileManager>
                                 if (downTile.TileState == TileState.Empty)
                                 {
                                     //Debug.Log(upTile.name + " down is empty!");
-                                    upTile.Fall();
-                                    upTile.Fall();
+                                    upTile.Move(downTile.transform.position);
                                     downTile.Monster = upTile.Monster;
                                     downTile.TileState = TileState.Monster;
                                     upTile.Monster = null;

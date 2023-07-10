@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Monster : MonoBehaviour, IKillable, IDamagable, IFallable
+public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
 {
     [SerializeField]
     private MonsterType _monsterType;
@@ -56,13 +56,31 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IFallable
 
     private void PlayKillEffects()
     {
-        //ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
+        ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
         AudioManager.singleton.PlaySound("Splat");
     }
 
-    public void Fall()
+    public void Move(Vector2 targetPosition)
     {
-        transform.localPosition -= Vector3.up;
+        StopCoroutine(MoveRoutine(targetPosition));
+        StartCoroutine(MoveRoutine(targetPosition));
+    }
+
+    public IEnumerator MoveRoutine(Vector2 targetPosition)
+    {
+        Vector3 startPosition = transform.position;
+        float distance = Mathf.Abs(startPosition.y - targetPosition.y);
+
+        float elapsedTime = 0f;
+        float fallTime = Constants.TIME_1 * distance;
+
+        while (elapsedTime < fallTime)
+        {
+            float t = elapsedTime / fallTime;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
 }
 
