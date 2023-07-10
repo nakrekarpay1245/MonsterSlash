@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1156402850657414371}
   - component: {fileID: 523993038010858587}
   m_Layer: 0
-  m_Name: TrollIcon
+  m_Name: MonsterIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7811014114978587090}
   - component: {fileID: 2554164245445462543}
   - component: {fileID: 5692265957513279235}
+  - component: {fileID: 6328557745975053755}
   m_Layer: 0
   m_Name: Troll
   m_TagString: Untagged
@@ -112,7 +113,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1156402850657414371}
   m_Father: {fileID: 0}
@@ -184,3 +185,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _monsterType: 1
   _health: 1
+--- !u!95 &6328557745975053755
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526157754732660827}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e22a4839aa86d0d46a54475beb728078, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

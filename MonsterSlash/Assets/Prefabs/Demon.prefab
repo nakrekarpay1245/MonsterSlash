@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5029528060429314784}
   - component: {fileID: 406823786565279070}
   - component: {fileID: 1700878144157705474}
+  - component: {fileID: 4494218060861526371}
   m_Layer: 0
   m_Name: Demon
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1487255966881991393}
   m_Father: {fileID: 0}
@@ -100,6 +101,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _monsterType: 0
   _health: 1
+--- !u!95 &4494218060861526371
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7520226523061575722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e22a4839aa86d0d46a54475beb728078, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8014729425067534664
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +133,7 @@ GameObject:
   - component: {fileID: 1487255966881991393}
   - component: {fileID: 8058610253012364323}
   m_Layer: 0
-  m_Name: DemonIcon
+  m_Name: MonsterIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

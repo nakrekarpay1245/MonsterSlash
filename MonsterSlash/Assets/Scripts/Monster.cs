@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Monster : MonoBehaviour, IKillable, IDamagable, IFallable
@@ -8,7 +9,17 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IFallable
 
     [SerializeField]
     private float _health;
-    public float Health { get => _health; private set { } }
+
+    private Animator _animator;
+    private int isGetHitHashCode;
+    private int isDeadHashCode;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+        isGetHitHashCode = Animator.StringToHash("isGetHit");
+        isDeadHashCode = Animator.StringToHash("isDead");
+    }
 
     public void TakeDamage(int damage)
     {
@@ -23,20 +34,29 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IFallable
 
     private void PlayHitEffects()
     {
-        ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
+        //ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
         AudioManager.singleton.PlaySound("Splat");
     }
 
     public void Kill()
     {
-        //LevelManager.singleton.IncreaseMonsterCount();
+        StartCoroutine(KillRoutine());
+    }
+
+    private IEnumerator KillRoutine()
+    {
+        _animator.SetTrigger(isDeadHashCode);
         PlayKillEffects();
+
+        yield return new WaitForSeconds(Constants.TIME_2);
+
+        //LevelManager.singleton.IncreaseMonsterCount();
         gameObject.SetActive(false);
     }
 
     private void PlayKillEffects()
     {
-        ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
+        //ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
         AudioManager.singleton.PlaySound("Splat");
     }
 
