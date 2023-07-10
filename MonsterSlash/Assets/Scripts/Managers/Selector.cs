@@ -81,6 +81,7 @@ public class Selector : MonoBehaviour
             }
             else if (draggedTile.TileState == TileState.Monster && draggedTile.MonsterType == selectedTiles[1].MonsterType && !selectedTiles.Contains(draggedTile))
             {
+                previousTile.GoTo(draggedTile.transform.position);
                 SelectTile(draggedTile);
             }
         }
