@@ -25,7 +25,7 @@ public class ParticleManager : MonoSingleton<ParticleManager>
                 GameObject particleObject = Instantiate(particleInfo.particlePrefab, transform);
                 particleInfo.particleSystem = particleObject.GetComponent<ParticleSystem>();
                 particleDictionary.Add(particleInfo.particlePrefab.name, particleInfo.particleSystem);
-                particleInfo.particleSystem.Stop(); // Baþlangýçta tüm particle'larý durdur
+                particleInfo.particleSystem.Stop();
             }
         }
     }
