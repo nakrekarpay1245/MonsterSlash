@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4536669982819089823
 SpriteRenderer:
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: d4e642ca3d4eac74091fd620483fd3dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,5 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2363a4a2cfd4854887024d58f40e448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _monster: {fileID: 0}
+  _monsterType: 0
   _emptyTile: {fileID: 21300000, guid: d4e642ca3d4eac74091fd620483fd3dc, type: 3}
   _selectedTile: {fileID: 21300000, guid: e7a4f4ead660e6943917a07ec084a815, type: 3}

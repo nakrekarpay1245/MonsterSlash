@@ -83,11 +83,12 @@ public class TileManager : MonoSingleton<TileManager>
         }
     }
 
-
     public Tile GetNearestTile(Vector3 position)
     {
-        Tile nearestTile = _activeTileList.OrderBy(tile =>
-            Vector3.Distance(tile.transform.position, position)).FirstOrDefault();
+        Tile nearestTile = _activeTileList
+                .OrderBy(tile => Vector3.Distance(tile.transform.position, position))
+                    .FirstOrDefault(tile => Vector2.Distance(tile.transform.position, position) <
+                        Constants.MINIMUM_SELECTION_DISTANCE);
 
         return nearestTile;
     }

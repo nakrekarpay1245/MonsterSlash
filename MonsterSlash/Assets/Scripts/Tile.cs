@@ -16,13 +16,21 @@ public class Tile : MonoBehaviour
         set { _tileGridPosition = value; }
     }
 
-
     [SerializeField]
     private Monster _monster;
     public Monster Monster
     {
         get { return _monster; }
         set { _monster = value; }
+    }
+
+
+    [SerializeField]
+    private MonsterType _monsterType;
+    public MonsterType MonsterType
+    {
+        get { return _monster.MonsterType; }
+        private set { }
     }
 
     [SerializeField]
