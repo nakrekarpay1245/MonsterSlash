@@ -27,10 +27,9 @@ public class MonsterManager : MonoSingleton<MonsterManager>
 
     public Monster GenerateRandomMonster(Tile parentTile)
     {
-        Transform parentTileTransform = parentTile.transform;
+        Vector2 parentTilePosition = parentTile.transform.position;
 
-        Vector3 generatePosition = new Vector3(parentTileTransform.position.x,
-            parentTileTransform.position.y);
+        Vector3 generatePosition = new Vector3(parentTilePosition.x, 5);
 
         int randomIndex = Random.Range(0, monsterPrefabList.Count);
 
@@ -38,6 +37,10 @@ public class MonsterManager : MonoSingleton<MonsterManager>
 
         Monster generatedMonster = Instantiate(randomMonster, generatePosition,
             Quaternion.identity, transform);
+
+        generatedMonster.name = randomMonster.name;
+
+        generatedMonster.Move(parentTilePosition);
 
         parentTile.Monster = generatedMonster;
         parentTile.TileState = TileState.Monster;

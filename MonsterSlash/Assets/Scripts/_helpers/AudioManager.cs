@@ -47,7 +47,7 @@ public class AudioManager : MonoSingleton<AudioManager>
     //    }
     //}
 
-    public void PlaySound(string clipName, float volume = 1f, bool randomPitch = true, bool loop = false, float moveForward = 0)
+    public void PlaySound(string clipName, float volume = 1f, bool randomPitch = true, bool loop = false)
     {
         // Aktif olan AudioSource componentini bul
         AudioSource activeSource = null;
@@ -77,14 +77,12 @@ public class AudioManager : MonoSingleton<AudioManager>
                 activeSource.volume = masterVolume * volume;
                 activeSource.loop = loop;
 
-                activeSource.time += moveForward;
-
                 activeSource.Play();
             }
         }
     }
 
-    public void PlaySound(AudioClip clip, float volume = 1f, float pitch = 1f, bool loop = false, float moveForward = 0)
+    public void PlaySound(AudioClip clip, float volume = 1f, float pitch = 1f, bool loop = false)
     {
         // Aktif olan AudioSource componentini bul
         AudioSource activeSource = null;
@@ -109,8 +107,6 @@ public class AudioManager : MonoSingleton<AudioManager>
         activeSource.clip = clip;
         activeSource.volume = masterVolume * volume;
         activeSource.loop = loop;
-
-        activeSource.time += moveForward;
 
         activeSource.Play();
     }

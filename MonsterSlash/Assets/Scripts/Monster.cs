@@ -56,7 +56,7 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
 
     private void PlayKillEffects()
     {
-        ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
+        ParticleManager.singleton.PlayParticleAtPoint((gameObject.name + "SplashParticle"), transform.position);
         AudioManager.singleton.PlaySound("Splat");
     }
 
