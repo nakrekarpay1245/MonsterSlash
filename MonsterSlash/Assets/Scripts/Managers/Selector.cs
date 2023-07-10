@@ -101,9 +101,11 @@ public class Selector : MonoBehaviour
         if (selectedTiles.Count > 1)
         {
             LineBetweenTiles.singleton.RemovePointToLine(selectedTiles[0].transform.position);
+
             selectedTiles[0].TileState = TileState.Empty;
             selectedTiles[0].DeSelect();
             selectedTiles.Remove(selectedTiles[0]);
+
             PlayerCharacter.singleton.MoveToPositionsSmoothly(selectedTiles);
         }
     }
