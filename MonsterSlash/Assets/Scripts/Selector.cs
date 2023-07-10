@@ -41,7 +41,6 @@ public class Selector : MonoBehaviour
 
         if (clickedTile != null && clickedTile.TileState == TileState.Player)
         {
-            Debug.Log("slm, nbr");
             SelectTile(clickedTile);
         }
     }
@@ -76,7 +75,7 @@ public class Selector : MonoBehaviour
 
             if (IsAdjacentTile(draggedTile, previousTile))
             {
-                previousTile.EmptyTile();
+                previousTile.DeSelect();
                 LineBetweenTiles.singleton.RemovePointToLine(previousTile.transform.position);
                 selectedTiles.Remove(previousTile);
             }
@@ -102,7 +101,7 @@ public class Selector : MonoBehaviour
         {
             LineBetweenTiles.singleton.RemovePointToLine(selectedTiles[0].transform.position);
             selectedTiles[0].TileState = TileState.Empty;
-            selectedTiles[0].EmptyTile();
+            selectedTiles[0].DeSelect();
             selectedTiles.Remove(selectedTiles[0]);
             PlayerCharacter.singleton.MoveToPositionsSmoothly(selectedTiles);
         }
@@ -112,7 +111,7 @@ public class Selector : MonoBehaviour
     {
         LineBetweenTiles.singleton.AddPointToLine(tile.transform.position);
         selectedTiles.Add(tile);
-        tile.SelectTile();
+        tile.Select();
     }
 
     private void ClearSelectedTiles()

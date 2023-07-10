@@ -595,7 +595,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -848,6 +848,10 @@ PrefabInstance:
     - target: {fileID: 465748334657319337, guid: 9b4f7848be9a79540bf0eb2e40fa177a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363694498132879405, guid: 9b4f7848be9a79540bf0eb2e40fa177a, type: 3}
+      propertyPath: _damagePoint
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3361161810830835215, guid: 9b4f7848be9a79540bf0eb2e40fa177a, type: 3}
       propertyPath: m_Name

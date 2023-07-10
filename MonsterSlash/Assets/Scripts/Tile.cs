@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IDamagable, ISelectable, IFallable
 {
     private TileState _tileState;
     public TileState TileState
@@ -16,7 +16,6 @@ public class Tile : MonoBehaviour
         set { _tileGridPosition = value; }
     }
 
-    [SerializeField]
     private Monster _monster;
     public Monster Monster
     {
@@ -31,7 +30,7 @@ public class Tile : MonoBehaviour
     }
 
     [SerializeField]
-    private Sprite _emptyTile;
+    private Sprite _deSelectedTile;
     [SerializeField]
     private Sprite _selectedTile;
 
@@ -42,27 +41,22 @@ public class Tile : MonoBehaviour
         _spriteRendererComponent = GetComponent<SpriteRenderer>();
     }
 
-    public void Deactivate()
-    {
-        Destroy(gameObject);
-    }
-
-    public void FallMonster()
+    public void Fall()
     {
         _monster.Fall();
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        _monster.TakeDamage();
+        _monster.TakeDamage(damage);
     }
 
-    public void EmptyTile()
+    public void DeSelect()
     {
-        _spriteRendererComponent.sprite = _emptyTile;
+        _spriteRendererComponent.sprite = _deSelectedTile;
     }
 
-    public void SelectTile()
+    public void Select()
     {
         _spriteRendererComponent.sprite = _selectedTile;
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerCharacter : MonoSingleton<PlayerCharacter>
+public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IDamage
 {
     [Header("Soldier Movement")]
     [Tooltip("Soldier moveSpeed")]
@@ -12,6 +12,11 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>
 
     [Tooltip("The walkpoints that the soldier will advance through in sequence")]
     public List<Tile> walkTileList;
+
+    [Header("Soldier Attack")]
+    [Tooltip("Soldier attackPoint")]
+    [SerializeField]
+    public int _damagePoint;
 
     /// <summary>
     /// The coroutine responsible for movement.
@@ -65,24 +70,33 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>
 
             if (newPosition == targetPosition)
             {
-                walkTileList[currentPositionIndex]?.EmptyTile();
-                walkTileList[currentPositionIndex]?.TakeDamage();
-                walkTileList[currentPositionIndex].TileState = TileState.Empty;
-                walkTileList[currentPositionIndex].Monster = null;
+                Tile currentTile = walkTileList[currentPositionIndex];
+
+                currentTile.DeSelect();
+
+                Damage(currentTile);
+
+                currentTile.TileState = TileState.Empty;
+                currentTile.Monster = null;
+
                 currentPositionIndex++;
 
-                yield return new WaitForSeconds(time_1);
+                time_1 -= time_1 / 65f;
                 yield return new WaitForSeconds(time_1);
 
-                time_1 -= time_1 / 65f;
-                LineBetweenTiles.singleton.RemovePointToLine(walkTileList[currentPositionIndex - 1].transform.position);
+                Tile previousTile = walkTileList[currentPositionIndex - 1];
+                Vector2 previousTilePosition = previousTile.transform.position;
+                LineBetweenTiles.singleton.RemovePointToLine(previousTilePosition);
             }
         }
 
         playerTile.TileState = TileState.Player;
         StopMoving();
+    }
 
-        yield return null;
+    public void Damage(IDamagable damagable)
+    {
+        damagable.TakeDamage(_damagePoint);
     }
 
     /// <summary>

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IKillable, IDamagable, IFallable
 {
     [SerializeField]
     private MonsterType _monsterType;
@@ -10,9 +10,9 @@ public class Monster : MonoBehaviour
     private float _health;
     public float Health { get => _health; private set { } }
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        _health--;
+        _health -= damage;
         if (_health <= 0)
         {
             Kill();
@@ -27,7 +27,7 @@ public class Monster : MonoBehaviour
         AudioManager.singleton.PlaySound("Splat");
     }
 
-    private void Kill()
+    public void Kill()
     {
         //LevelManager.singleton.IncreaseMonsterCount();
         PlayKillEffects();

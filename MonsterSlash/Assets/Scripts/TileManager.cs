@@ -110,7 +110,7 @@ public class TileManager : MonoSingleton<TileManager>
                         if (downTile.TileState == TileState.Empty)
                         {
                             //Debug.Log(upTile.name + " down is empty!");
-                            upTile.FallMonster();
+                            upTile.Fall();
                             downTile.Monster = upTile.Monster;
                             downTile.TileState = TileState.Monster;
                             upTile.Monster = null;
@@ -126,8 +126,8 @@ public class TileManager : MonoSingleton<TileManager>
                                 if (downTile.TileState == TileState.Empty)
                                 {
                                     //Debug.Log(upTile.name + " down is empty!");
-                                    upTile.FallMonster();
-                                    upTile.FallMonster();
+                                    upTile.Fall();
+                                    upTile.Fall();
                                     downTile.Monster = upTile.Monster;
                                     downTile.TileState = TileState.Monster;
                                     upTile.Monster = null;

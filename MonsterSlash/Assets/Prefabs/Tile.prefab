@@ -98,6 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _monster: {fileID: 0}
-  _monsterType: 0
-  _emptyTile: {fileID: 21300000, guid: d4e642ca3d4eac74091fd620483fd3dc, type: 3}
+  _deSelectedTile: {fileID: 21300000, guid: d4e642ca3d4eac74091fd620483fd3dc, type: 3}
   _selectedTile: {fileID: 21300000, guid: e7a4f4ead660e6943917a07ec084a815, type: 3}
