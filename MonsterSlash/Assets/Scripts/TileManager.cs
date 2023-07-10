@@ -91,4 +91,77 @@ public class TileManager : MonoSingleton<TileManager>
 
         return nearestTile;
     }
+
+    public void SortGrid()
+    {
+        for (int a = 0; a < _gridHeight - 1; a++)
+        {
+            for (int i = _gridWidth - 1; i >= 0; i--)
+            {
+                for (int j = _gridHeight - 1; j > 0; j--)
+                {
+                    Tile upTile = _tileGrid[i, j];
+                    Tile downTile = _tileGrid[i, j - 1];
+
+                    if (upTile.TileState == TileState.Monster)
+                    {
+                        //Debug.Log(upTile.name + " is " + upTile.GetMonster().name);
+
+                        if (downTile.TileState == TileState.Empty)
+                        {
+                            //Debug.Log(upTile.name + " down is empty!");
+                            upTile.FallMonster();
+                            downTile.Monster = upTile.Monster;
+                            downTile.TileState = TileState.Monster;
+                            upTile.Monster = null;
+                            upTile.TileState = TileState.Empty;
+                        }
+                        else if (downTile.TileState == TileState.Player ||
+                            downTile.TileState == TileState.Obstacle)
+                        {
+                            if (j - 2 >= 0)
+                            {
+                                downTile = _tileGrid[i, j - 2];
+
+                                if (downTile.TileState == TileState.Empty)
+                                {
+                                    //Debug.Log(upTile.name + " down is empty!");
+                                    upTile.FallMonster();
+                                    upTile.FallMonster();
+                                    downTile.Monster = upTile.Monster;
+                                    downTile.TileState = TileState.Monster;
+                                    upTile.Monster = null;
+                                    upTile.TileState = TileState.Empty;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        FillTheGrid();
+    }
+
+    private void FillTheGrid()
+    {
+        for (int x = 0; x < _gridWidth; x++)
+        {
+            for (int y = 0; y < _gridHeight; y++)
+            {
+                Tile tile = _tileGrid[x, y];
+
+                if (tile.TileState == TileState.Empty)
+                {
+                    if (tile.TileState == TileState.Player)
+                    {
+                        continue;
+                    }
+
+                    MonsterManager.singleton.GenerateRandomMonster(tile);
+                    tile.TileState = TileState.Monster;
+                }
+            }
+        }
+    }
 }

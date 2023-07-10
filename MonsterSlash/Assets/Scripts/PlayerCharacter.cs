@@ -79,8 +79,8 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>
             }
         }
 
-        //playerTile.TileState = TileState.Player;
-        //StopMoving();
+        playerTile.TileState = TileState.Player;
+        StopMoving();
 
         yield return null;
     }
@@ -93,7 +93,7 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>
     {
         moveCoroutine = null;
         walkTileList.Clear();
-        //TileManager.singleton.SortGrid();
+        TileManager.singleton.SortGrid();
         LineBetweenTiles.singleton.ClearLine();
     }
 }

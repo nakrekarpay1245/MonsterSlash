@@ -12,86 +12,99 @@ public class Selector : MonoBehaviour
 
     private void Update()
     {
+        HandleMouseInput();
+    }
+
+    private void HandleMouseInput()
+    {
         if (Input.GetMouseButtonDown(0))
         {
-            ClearSelectedTiles();
+            HandleMouseButtonDown();
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            HandleMouseButton();
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            HandleMouseButtonUp();
+        }
+    }
 
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Tile clickedTile = TileManager.singleton.GetNearestTile(mousePosition);
+    private void HandleMouseButtonDown()
+    {
+        ClearSelectedTiles();
+        ClearLineBetweenTiles();
 
-            if (clickedTile != null)
-            {
-                if (clickedTile.TileState != TileState.Player)
-                {
-                    return;
-                }
-                SelectTile(clickedTile);
-            }
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Tile clickedTile = TileManager.singleton.GetNearestTile(mousePosition);
+
+        if (clickedTile != null && clickedTile.TileState == TileState.Player)
+        {
+            Debug.Log("slm, nbr");
+            SelectTile(clickedTile);
+        }
+    }
+
+    private void HandleMouseButton()
+    {
+        if (selectedTiles.Count == 0)
+        {
+            return;
         }
 
-        if (Input.GetMouseButton(0))
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Tile draggedTile = TileManager.singleton.GetNearestTile(mousePosition);
+
+        if (draggedTile != null && IsWithinMinimumDistance(draggedTile))
         {
-            if (selectedTiles.Count > 0)
+            HandleValidDraggedTile(draggedTile);
+        }
+    }
+
+    private bool IsWithinMinimumDistance(Tile draggedTile)
+    {
+        float distanceBetweenTiles = Vector2.Distance(selectedTiles[selectedTiles.Count - 1].transform.position, draggedTile.transform.position);
+        return distanceBetweenTiles <= Constants.MINIMUM_DISTANCE_BETWEEN_TILES;
+    }
+
+    private void HandleValidDraggedTile(Tile draggedTile)
+    {
+        if (selectedTiles.Count > 1)
+        {
+            Tile previousTile = selectedTiles[selectedTiles.Count - 1];
+
+            if (IsAdjacentTile(draggedTile, previousTile))
             {
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-                Tile draggedTile = TileManager.singleton.GetNearestTile(mousePosition);
-
-                if (draggedTile != null)
-                {
-                    float distanceBetweenTiles =
-                        Vector2.Distance(selectedTiles[selectedTiles.Count - 1].transform.position,
-                            draggedTile.transform.position);
-
-                    if (distanceBetweenTiles > Constants.MINIMUM_DISTANCE_BETWEEN_TILES)
-                    {
-                        return;
-                    }
-
-                    if (selectedTiles.Count > 1)
-                    {
-                        Tile previousTile = selectedTiles[selectedTiles.Count - 1];
-
-                        if (draggedTile == selectedTiles[0] ||
-                            draggedTile == selectedTiles[selectedTiles.Count - 2])
-                        {
-                            previousTile.EmptyTile();
-                            LineBetweenTiles.singleton.RemovePointToLine(previousTile.transform.position);
-                            selectedTiles.Remove(previousTile);
-                        }
-                        else if (draggedTile.TileState == TileState.Monster)
-                        {
-                            if (draggedTile.MonsterType == selectedTiles[1].MonsterType)
-                            {
-                                if (!selectedTiles.Contains(draggedTile))
-                                {
-                                    SelectTile(draggedTile);
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (!selectedTiles.Contains(draggedTile))
-                        {
-                            SelectTile(draggedTile);
-                        }
-                    }
-                }
+                previousTile.EmptyTile();
+                LineBetweenTiles.singleton.RemovePointToLine(previousTile.transform.position);
+                selectedTiles.Remove(previousTile);
+            }
+            else if (draggedTile.TileState == TileState.Monster && draggedTile.MonsterType == selectedTiles[1].MonsterType && !selectedTiles.Contains(draggedTile))
+            {
+                SelectTile(draggedTile);
             }
         }
-
-        if (Input.GetMouseButtonUp(0))
+        else if (!selectedTiles.Contains(draggedTile))
         {
-            if (selectedTiles.Count > 1)
-            {
-                LineBetweenTiles.singleton.RemovePointToLine(selectedTiles[0].transform.position);
-                selectedTiles[0].TileState = TileState.Empty;
-                selectedTiles[0].EmptyTile();
-                selectedTiles.Remove(selectedTiles[0]);
-                PlayerCharacter.singleton.MoveToPositionsSmoothly(selectedTiles);
-            }
-            ClearSelectedTiles();
+            SelectTile(draggedTile);
+        }
+    }
+
+    private bool IsAdjacentTile(Tile tile1, Tile tile2)
+    {
+        return tile1 == selectedTiles[0] || tile1 == selectedTiles[selectedTiles.Count - 2];
+    }
+
+    private void HandleMouseButtonUp()
+    {
+        if (selectedTiles.Count > 1)
+        {
+            LineBetweenTiles.singleton.RemovePointToLine(selectedTiles[0].transform.position);
+            selectedTiles[0].TileState = TileState.Empty;
+            selectedTiles[0].EmptyTile();
+            selectedTiles.Remove(selectedTiles[0]);
+            PlayerCharacter.singleton.MoveToPositionsSmoothly(selectedTiles);
         }
     }
 
@@ -105,5 +118,10 @@ public class Selector : MonoBehaviour
     private void ClearSelectedTiles()
     {
         selectedTiles.Clear();
+    }
+
+    private void ClearLineBetweenTiles()
+    {
+        LineBetweenTiles.singleton.ClearLine();
     }
 }

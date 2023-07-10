@@ -47,10 +47,10 @@ public class Tile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //public void FallMonster()
-    //{
-    //    monster.Fall();
-    //}
+    public void FallMonster()
+    {
+        _monster.Fall();
+    }
 
     public void TakeDamage()
     {
