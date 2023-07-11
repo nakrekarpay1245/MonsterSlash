@@ -25,10 +25,18 @@ Here are some planned features and improvements for Monster Slash:
 - Add special levels with challenging puzzles
 - Enhance graphics and visual effects
 - Improve game performance and optimize code
+  
+## How to Contribute
 
-## Contributions
-Contributions to Monster Slash are welcome! Whether you're skilled in game art, game design, or software development, there are several ways you can contribute to this project. Feel free to open an issue or submit a pull request with your ideas, bug fixes, or new features.
+If you would like to contribute to our project, you can follow these steps:
 
+1. Fork this repository (https://github.com/nakrekarpay1245/MonsterSlash/fork)
+2. Clone it to your computer: `git clone https://github.com/nakrekarpay1245/MonsterSlash.git`
+3. Create new branch: `git checkout -b ozellik/desifre-edici-ozellik`
+4. Make your changes and commit them: `git commit -am 'Özelliği ekle: Desifre edici özelliği'`
+5. Push your branch: `git push origin ozellik/desifre-edici-ozellik`
+6. Submit A Pull Requaest
+   
 ## Links
 - [My Portfolio Website](https://www.erkanyapra.w3spaces.com)
 - [Author's GitHub Profile](https://github.com/nakrekarpay1245)
