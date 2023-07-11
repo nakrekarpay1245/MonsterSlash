@@ -30,8 +30,8 @@ Here are some planned features and improvements for Monster Slash:
 Contributions to Monster Slash are welcome! Whether you're skilled in game art, game design, or software development, there are several ways you can contribute to this project. Feel free to open an issue or submit a pull request with your ideas, bug fixes, or new features.
 
 ## Links
-- [Author's Portfolio Website](https://www.example.com)
-- [Author's GitHub Profile](https://github.com/yourusername)
+- [My Portfolio Website](https://www.erkanyapra.w3spaces.com)
+- [Author's GitHub Profile](https://github.com/nakrekarpay1245)
 
 We appreciate your interest and support for Monster Slash. Thank you for being a part of this project!
 
