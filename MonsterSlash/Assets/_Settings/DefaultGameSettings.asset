@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a2d0cb54843cc418c70e8ec1c09a87, type: 3}
+  m_Name: DefaultGameSettings
+  m_EditorClassIdentifier: 
+  MINIMUM_DISTANCE_BETWEEN_TILES: 1.5
+  MINIMUM_SELECTION_DISTANCE: 0.25
+  TIME_1: 0.2
+  TIME_2: 0.4
