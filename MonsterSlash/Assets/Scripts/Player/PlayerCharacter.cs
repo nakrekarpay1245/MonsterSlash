@@ -26,9 +26,7 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IDamage
     private Tile playerTile;
 
     /// <summary>
-    /// Initiates smooth movement to a list of target tiles. Checks if there is an ongoing movement 
-    /// coroutine and stops it if necessary. Sets the target tile list, current position index, and
-    /// starts the movement coroutine.
+    ///
     /// </summary>
     /// <param name="targetTiles"></param>
     public void MoveToPositionsSmoothly(List<Tile> targetTiles)
@@ -43,17 +41,12 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IDamage
     }
 
     /// <summary>
-    /// Performs the movement coroutine, smoothly moving the entity between the target tiles. It
-    /// iterates through the target tile list, moving the entity towards each target position.
-    /// Once the entity reaches a target position, it updates the occupancy status of the current
-    /// and next tiles, sets the entity's parent to the current tile, and updates the list of tiles 
-    /// in the entity. The coroutine continues until all target positions have been reached. Finally,
-    /// it stops the movement coroutine when the movement is complete.
+    ///
     /// </summary>
     /// <returns></returns>
     private IEnumerator MoveCoroutine()
     {
-        float time_1 = Constants.TIME_1;
+        float time_1 = GameSettings.singleton.TIME_1;
         playerTile = walkTileList[walkTileList.Count - 1];
         int currentPositionIndex = 0;
         int targetTileCount = walkTileList.Count;

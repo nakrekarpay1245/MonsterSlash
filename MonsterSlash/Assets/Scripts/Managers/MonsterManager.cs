@@ -28,23 +28,29 @@ public class MonsterManager : MonoSingleton<MonsterManager>
     public Monster GenerateRandomMonster(Tile parentTile)
     {
         Vector2 parentTilePosition = parentTile.transform.position;
-
         Vector3 generatePosition = new Vector3(parentTilePosition.x, 5);
 
-        int randomIndex = Random.Range(0, monsterPrefabList.Count);
+        Monster randomMonster = GetRandomMonsterPrefab();
 
-        Monster randomMonster = monsterPrefabList[randomIndex];
-
-        Monster generatedMonster = Instantiate(randomMonster, generatePosition,
-            Quaternion.identity, transform);
-
-        generatedMonster.name = randomMonster.name;
-
+        Monster generatedMonster = InstantiateMonster(randomMonster, generatePosition);
         generatedMonster.Move(parentTilePosition);
+        generatedMonster.name = randomMonster.name;
 
         parentTile.Monster = generatedMonster;
         parentTile.TileState = TileState.Monster;
 
+        return generatedMonster;
+    }
+
+    private Monster GetRandomMonsterPrefab()
+    {
+        int randomIndex = Random.Range(0, monsterPrefabList.Count);
+        return monsterPrefabList[randomIndex];
+    }
+
+    private Monster InstantiateMonster(Monster prefab, Vector3 position)
+    {
+        Monster generatedMonster = Instantiate(prefab, position, Quaternion.identity, transform);
         return generatedMonster;
     }
 }

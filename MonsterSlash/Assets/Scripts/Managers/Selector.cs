@@ -63,8 +63,14 @@ public class Selector : MonoBehaviour
 
     private bool IsWithinMinimumDistance(Tile draggedTile)
     {
-        float distanceBetweenTiles = Vector2.Distance(selectedTiles[selectedTiles.Count - 1].transform.position, draggedTile.transform.position);
-        return distanceBetweenTiles <= Constants.MINIMUM_DISTANCE_BETWEEN_TILES;
+        Tile lastTile = selectedTiles[selectedTiles.Count - 1];
+        Vector2 lastTilePosition = lastTile.transform.position;
+
+        Vector2 draggedTilePosition = draggedTile.transform.position;
+
+        float distanceBetweenTiles = Vector2.Distance(lastTilePosition, draggedTilePosition);
+
+        return distanceBetweenTiles <= GameSettings.singleton.MINIMUM_DISTANCE_BETWEEN_TILES;
     }
 
     private void HandleValidDraggedTile(Tile draggedTile)

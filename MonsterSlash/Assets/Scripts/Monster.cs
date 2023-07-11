@@ -34,7 +34,7 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
 
     private void PlayHitEffects()
     {
-        //ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
+        ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
         AudioManager.singleton.PlaySound("Splat");
     }
 
@@ -46,11 +46,10 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
     private IEnumerator KillRoutine()
     {
         _animator.SetTrigger(isDeadHashCode);
+
         PlayKillEffects();
+        yield return new WaitForSeconds(GameSettings.singleton.TIME_2);
 
-        yield return new WaitForSeconds(Constants.TIME_2);
-
-        //LevelManager.singleton.IncreaseMonsterCount();
         gameObject.SetActive(false);
     }
 
@@ -72,7 +71,7 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
         float distance = Mathf.Abs(startPosition.y - targetPosition.y);
 
         float elapsedTime = 0f;
-        float fallTime = Constants.TIME_1 * distance;
+        float fallTime = GameSettings.singleton.TIME_1 * distance;
 
         while (elapsedTime < fallTime)
         {

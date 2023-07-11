@@ -29,12 +29,17 @@ public class Tile : MonoBehaviour, IDamagable, ISelectable, IMoveable
         private set { }
     }
 
+    [Header("Tile visualization reference")]
+    [Tooltip("Image that will appear when tile is not selected")]
     [SerializeField]
     private Sprite _deSelectedTile;
+    [Tooltip("Image that will appear when tile is selected")]
     [SerializeField]
     private Sprite _selectedTile;
 
     private SpriteRenderer _spriteRendererComponent;
+
+    [Tooltip("Object showing Tile selected after Tile")]
     [SerializeField]
     private SpriteRenderer _goToDisplayer;
 
@@ -43,28 +48,49 @@ public class Tile : MonoBehaviour, IDamagable, ISelectable, IMoveable
         _spriteRendererComponent = GetComponent<SpriteRenderer>();
     }
 
+
+    /// <summary>
+    /// Moves the associated monster to the specified target position.
+    /// </summary>
+    /// <param name="targetPosition">The position to which the monster should move.</param>
     public void Move(Vector2 targetPosition)
     {
         _monster.Move(targetPosition);
     }
 
+    /// <summary>
+    /// Applies the specified amount of damage to the associated monster.
+    /// </summary>
+    /// <param name="damage">The amount of damage to be applied.</param>
     public void TakeDamage(int damage)
     {
         _monster.TakeDamage(damage);
     }
 
+    /// <summary>
+    /// Deselects the tile by changing its sprite to the deselected tile sprite and hides the 
+    /// GoToDisplayer object.
+    /// </summary>
     public void DeSelect()
     {
         _spriteRendererComponent.sprite = _deSelectedTile;
         _goToDisplayer.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Selects the tile by changing its sprite to the selected tile sprite and hides the 
+    /// GoToDisplayer object.
+    /// </summary>
     public void Select()
     {
         _spriteRendererComponent.sprite = _selectedTile;
         _goToDisplayer.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Sets the GoToDisplayer object's position and rotation to face the given goToPosition.
+    /// </summary>
+    /// <param name="goToPosition">The target position to go to.</param>
     public void GoTo(Vector3 goToPosition)
     {
         _goToDisplayer.gameObject.SetActive(true);

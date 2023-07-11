@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 
 public class TileManager : MonoSingleton<TileManager>
@@ -88,7 +87,7 @@ public class TileManager : MonoSingleton<TileManager>
         Tile nearestTile = _activeTileList
                 .OrderBy(tile => Vector3.Distance(tile.transform.position, position))
                     .FirstOrDefault(tile => Vector2.Distance(tile.transform.position, position) <
-                        Constants.MINIMUM_SELECTION_DISTANCE);
+                        GameSettings.singleton.MINIMUM_SELECTION_DISTANCE);
 
         return nearestTile;
     }
@@ -106,11 +105,8 @@ public class TileManager : MonoSingleton<TileManager>
 
                     if (upTile.TileState == TileState.Monster)
                     {
-                        //Debug.Log(upTile.name + " is " + upTile.GetMonster().name);
-
                         if (downTile.TileState == TileState.Empty)
                         {
-                            //Debug.Log(upTile.name + " down is empty!");
                             upTile.Move(downTile.transform.position);
                             downTile.Monster = upTile.Monster;
                             downTile.TileState = TileState.Monster;
@@ -126,7 +122,6 @@ public class TileManager : MonoSingleton<TileManager>
 
                                 if (downTile.TileState == TileState.Empty)
                                 {
-                                    //Debug.Log(upTile.name + " down is empty!");
                                     upTile.Move(downTile.transform.position);
                                     downTile.Monster = upTile.Monster;
                                     downTile.TileState = TileState.Monster;
@@ -153,11 +148,6 @@ public class TileManager : MonoSingleton<TileManager>
 
                 if (tile.TileState == TileState.Empty)
                 {
-                    if (tile.TileState == TileState.Player)
-                    {
-                        continue;
-                    }
-
                     MonsterManager.singleton.GenerateRandomMonster(tile);
                     tile.TileState = TileState.Monster;
                 }
