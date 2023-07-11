@@ -21,6 +21,10 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
         isDeadHashCode = Animator.StringToHash("isDead");
     }
 
+    /// <summary>
+    /// This function reduces the object's health by the specified damage amount.
+    /// </summary>
+    /// <param name="damage"></param>
     public void TakeDamage(int damage)
     {
         _health -= damage;
@@ -32,6 +36,9 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
         PlayHitEffects();
     }
 
+    /// <summary>
+    /// This function plays the hit effects, such as a splash particle and a sound effect.
+    /// </summary>
     private void PlayHitEffects()
     {
         ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
@@ -43,6 +50,11 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
         StartCoroutine(KillRoutine());
     }
 
+    /// <summary>
+    /// This coroutine handles the process of killing the object, including triggering the death
+    /// animation, playing kill effects, and deactivating the object after a specified delay.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator KillRoutine()
     {
         _animator.SetTrigger(isDeadHashCode);
@@ -53,6 +65,9 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// This function plays the kill effects, such as a splash particle and a sound effect.
+    /// </summary>
     private void PlayKillEffects()
     {
         ParticleManager.singleton.PlayParticleAtPoint((gameObject.name + "SplashParticle"), transform.position);
@@ -65,6 +80,12 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
         StartCoroutine(MoveRoutine(targetPosition));
     }
 
+    /// <summary>
+    /// This coroutine smoothly moves the object from its current position to the target position 
+    /// over a specified fall time.
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    /// <returns></returns>
     public IEnumerator MoveRoutine(Vector2 targetPosition)
     {
         Vector3 startPosition = transform.position;

@@ -15,6 +15,9 @@ public class Selector : MonoBehaviour
         HandleMouseInput();
     }
 
+    /// <summary>
+    /// Handles the mouse input for tile interaction.
+    /// </summary>
     private void HandleMouseInput()
     {
         if (Input.GetMouseButtonDown(0))
@@ -31,6 +34,9 @@ public class Selector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles the mouse button down input for tile selection.
+    /// </summary>
     private void HandleMouseButtonDown()
     {
         ClearSelectedTiles();
@@ -45,6 +51,9 @@ public class Selector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles the mouse button input during tile selection.
+    /// </summary>
     private void HandleMouseButton()
     {
         if (selectedTiles.Count == 0)
@@ -61,6 +70,11 @@ public class Selector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if the dragged tile is within the minimum distance from the last selected tile.
+    /// </summary>
+    /// <param name="draggedTile">The tile being dragged.</param>
+    /// <returns>True if the dragged tile is within the minimum distance, false otherwise.</returns>
     private bool IsWithinMinimumDistance(Tile draggedTile)
     {
         Tile lastTile = selectedTiles[selectedTiles.Count - 1];
@@ -73,6 +87,10 @@ public class Selector : MonoBehaviour
         return distanceBetweenTiles <= GameSettings.singleton.MINIMUM_DISTANCE_BETWEEN_TILES;
     }
 
+    /// <summary>
+    /// Handles the logic when a valid tile is being dragged during the selection process.
+    /// </summary>
+    /// <param name="draggedTile">The tile being dragged.</param>
     private void HandleValidDraggedTile(Tile draggedTile)
     {
         if (selectedTiles.Count > 1)
@@ -82,7 +100,7 @@ public class Selector : MonoBehaviour
             if (IsAdjacentTile(draggedTile, previousTile))
             {
                 previousTile.DeSelect();
-                LineBetweenTiles.singleton.RemovePointToLine(previousTile.transform.position);
+                LineBetweenTiles.singleton.RemovePointFromLine(previousTile.transform.position);
                 selectedTiles.Remove(previousTile);
             }
             else if (draggedTile.TileState == TileState.Monster && draggedTile.MonsterType == selectedTiles[1].MonsterType && !selectedTiles.Contains(draggedTile))
@@ -97,16 +115,26 @@ public class Selector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if the given tiles are adjacent to the first or second-to-last tile in the selected 
+    /// tiles list
+    /// </summary>
+    /// <param name="tile1">The first tile to check.</param>
+    /// <param name="tile2">The second tile to check.</param>
+    /// <returns>True if the tiles are adjacent; otherwise, false.</returns>
     private bool IsAdjacentTile(Tile tile1, Tile tile2)
     {
         return tile1 == selectedTiles[0] || tile1 == selectedTiles[selectedTiles.Count - 2];
     }
 
+    /// <summary>
+    /// Handles the mouse button up event. If multiple tiles are selected, it removes the first tile from the line between tiles, updates its state and visual representation, removes it from the selected tiles list, and initiates the smooth movement of the player character to the selected tiles.
+    /// </summary>
     private void HandleMouseButtonUp()
     {
         if (selectedTiles.Count > 1)
         {
-            LineBetweenTiles.singleton.RemovePointToLine(selectedTiles[0].transform.position);
+            LineBetweenTiles.singleton.RemovePointFromLine(selectedTiles[0].transform.position);
 
             selectedTiles[0].TileState = TileState.Empty;
             selectedTiles[0].DeSelect();
@@ -116,6 +144,11 @@ public class Selector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Selects a tile and performs the necessary actions, such as adding it to the line between tiles, 
+    /// adding it to the selected tiles list, and updating its visual state.
+    /// </summary>
+    /// <param name="tile">The tile to select.</param>
     private void SelectTile(Tile tile)
     {
         LineBetweenTiles.singleton.AddPointToLine(tile.transform.position);

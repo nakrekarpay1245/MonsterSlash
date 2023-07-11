@@ -44,6 +44,9 @@ public class TileManager : MonoSingleton<TileManager>
         GenerateTiles();
     }
 
+    /// <summary>
+    /// Generates the tiles of the game board based on the grid width and height.
+    /// </summary>
     private void GenerateTiles()
     {
         int index = 0;
@@ -82,6 +85,13 @@ public class TileManager : MonoSingleton<TileManager>
         }
     }
 
+
+    /// <summary>
+    /// Retrieves the nearest tile to the specified position based on minimum selection distance.
+    /// </summary>
+    /// <param name="position">The position to compare with.</param>
+    /// <returns>The nearest tile to the position within the minimum selection distance, or null 
+    /// if no tile is found.</returns>    
     public Tile GetNearestTile(Vector3 position)
     {
         Tile nearestTile = _activeTileList
@@ -92,6 +102,9 @@ public class TileManager : MonoSingleton<TileManager>
         return nearestTile;
     }
 
+    /// <summary>
+    /// Sorts the grid by moving monsters down to fill empty spaces.
+    /// </summary>
     public void SortGrid()
     {
         for (int a = 0; a < _gridHeight - 1; a++)
@@ -138,6 +151,9 @@ public class TileManager : MonoSingleton<TileManager>
         FillTheGrid();
     }
 
+    /// <summary>
+    /// Fills the empty tiles in the grid with randomly generated monsters.
+    /// </summary>
     private void FillTheGrid()
     {
         for (int x = 0; x < _gridWidth; x++)

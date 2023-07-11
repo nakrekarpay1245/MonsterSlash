@@ -26,7 +26,8 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IDamage
     private Tile playerTile;
 
     /// <summary>
-    ///
+    /// This function initiates the smooth movement of the character to the specified targetTiles.
+    /// If there is an ongoing moveCoroutine, it stops it before starting a new one.
     /// </summary>
     /// <param name="targetTiles"></param>
     public void MoveToPositionsSmoothly(List<Tile> targetTiles)
@@ -41,7 +42,9 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IDamage
     }
 
     /// <summary>
-    ///
+    /// This coroutine moves the character along the defined walkTileList, updating its position
+    /// and performing actions on each tile it reaches. It also handles tile selection, damage,
+    /// clearing the tile, and updating the time_1 value.
     /// </summary>
     /// <returns></returns>
     private IEnumerator MoveCoroutine()
@@ -56,15 +59,12 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IDamage
             Vector3 targetPosition = walkTileList[currentPositionIndex].transform.position;
             Vector3 currentPosition = transform.position;
 
-            Vector3 newPosition = Vector3.MoveTowards(currentPosition,
-                targetPosition, _walkSpeedBetweenTiles * Time.deltaTime);
+            float step = _walkSpeedBetweenTiles;
+            transform.position = Vector3.MoveTowards(currentPosition, targetPosition, step);
 
-            transform.position = newPosition;
-
-            if (newPosition == targetPosition)
+            if (transform.position == targetPosition)
             {
                 Tile currentTile = walkTileList[currentPositionIndex];
-
                 currentTile.DeSelect();
 
                 Damage(currentTile);
@@ -73,28 +73,33 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IDamage
                 currentTile.Monster = null;
 
                 currentPositionIndex++;
-
                 time_1 -= time_1 / 65f;
                 yield return new WaitForSeconds(time_1);
 
                 Tile previousTile = walkTileList[currentPositionIndex - 1];
                 Vector2 previousTilePosition = previousTile.transform.position;
-                LineBetweenTiles.singleton.RemovePointToLine(previousTilePosition);
+                LineBetweenTiles.singleton.RemovePointFromLine(previousTilePosition);
             }
+
+            yield return null;
         }
 
         playerTile.TileState = TileState.Player;
         StopMoving();
     }
 
+    /// <summary>
+    /// This function applies damage to an object that implements the IDamagable interface.
+    /// It calls the TakeDamage function of the damagable object with the specified damage points.
+    /// </summary>
+    /// <param name="damagable"></param>
     public void Damage(IDamagable damagable)
     {
         damagable.TakeDamage(_damagePoint);
     }
 
     /// <summary>
-    /// Stops the movement of the entity by clearing the moveCoroutine, resetting the currentPositionIndex, 
-    /// and clearing the walkTileList.
+    /// Stops the movement of the player by clearing the moveCoroutine and clearing the walkTileList
     /// </summary>
     private void StopMoving()
     {
