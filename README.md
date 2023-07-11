@@ -1,7 +1,4 @@
 # Monster Slash
-
-![Banner](https://github.com/nakrekarpay1245/MonsterSlash/blob/main/MonsterSlash/Assets/Screenshots/SS_1.png)
-
 Welcome to the Monster Slash repository! This is a mobile game developed using the Unity Engine and C# programming language.
 
 ![Screenshot - 1](https://github.com/nakrekarpay1245/MonsterSlash/blob/main/MonsterSlash/Assets/Screenshots/SS_1.png)
