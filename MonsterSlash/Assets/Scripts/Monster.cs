@@ -60,7 +60,7 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
         _animator.SetTrigger(isDeadHashCode);
 
         PlayKillEffects();
-        yield return new WaitForSeconds(GameSettings.singleton.TIME_2);
+        yield return new WaitForSeconds(GameSettings.singleton.TIME_1);
 
         gameObject.SetActive(false);
     }
