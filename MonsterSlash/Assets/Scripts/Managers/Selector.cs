@@ -56,17 +56,15 @@ public class Selector : MonoBehaviour
     /// </summary>
     private void HandleMouseButton()
     {
-        if (selectedTiles.Count == 0)
+        if (selectedTiles.Count > 0)
         {
-            return;
-        }
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Tile draggedTile = TileManager.singleton.GetNearestTile(mousePosition);
 
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Tile draggedTile = TileManager.singleton.GetNearestTile(mousePosition);
-
-        if (draggedTile != null && IsWithinMinimumDistance(draggedTile))
-        {
-            HandleValidDraggedTile(draggedTile);
+            if (draggedTile != null && IsWithinMinimumDistance(draggedTile))
+            {
+                HandleValidDraggedTile(draggedTile);
+            }
         }
     }
 
@@ -95,17 +93,19 @@ public class Selector : MonoBehaviour
     {
         if (selectedTiles.Count > 1)
         {
-            Tile previousTile = selectedTiles[selectedTiles.Count - 1];
+            Tile lastTile = selectedTiles[selectedTiles.Count - 1];
 
-            if (IsAdjacentTile(draggedTile, previousTile))
+            if (IsAdjacentTile(draggedTile))
             {
-                previousTile.DeSelect();
-                LineBetweenTiles.singleton.RemovePointFromLine(previousTile.transform.position);
-                selectedTiles.Remove(previousTile);
+                lastTile.DeSelect();
+                LineBetweenTiles.singleton.RemovePointFromLine(lastTile.transform.position);
+                selectedTiles.Remove(lastTile);
             }
-            else if (draggedTile.TileState == TileState.Monster && draggedTile.MonsterType == selectedTiles[1].MonsterType && !selectedTiles.Contains(draggedTile))
+            else if (draggedTile.TileState == TileState.Monster &&
+                        draggedTile.MonsterType == lastTile.MonsterType &&
+                            !selectedTiles.Contains(draggedTile))
             {
-                previousTile.GoTo(draggedTile.transform.position);
+                lastTile.GoTo(draggedTile.transform.position);
                 SelectTile(draggedTile);
             }
         }
@@ -122,7 +122,7 @@ public class Selector : MonoBehaviour
     /// <param name="tile1">The first tile to check.</param>
     /// <param name="tile2">The second tile to check.</param>
     /// <returns>True if the tiles are adjacent; otherwise, false.</returns>
-    private bool IsAdjacentTile(Tile tile1, Tile tile2)
+    private bool IsAdjacentTile(Tile tile1)
     {
         return tile1 == selectedTiles[0] || tile1 == selectedTiles[selectedTiles.Count - 2];
     }
