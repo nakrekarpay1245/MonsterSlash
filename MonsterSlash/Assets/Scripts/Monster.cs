@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
+public class Monster : MonoBehaviour, IKillable, IInteractable, IMoveable
 {
     [SerializeField]
     private MonsterType _monsterType;
@@ -25,9 +25,9 @@ public class Monster : MonoBehaviour, IKillable, IDamagable, IMoveable
     /// This function reduces the object's health by the specified damage amount.
     /// </summary>
     /// <param name="damage"></param>
-    public void TakeDamage(int damage)
+    public void Interact()
     {
-        _health -= damage;
+        _health--;
         if (_health <= 0)
         {
             Kill();

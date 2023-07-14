@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IDamage
+public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IInteractor
 {
     [Header("Soldier Movement")]
     [Tooltip("Soldier moveSpeed")]
@@ -67,7 +67,7 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IDamage
                 Tile currentTile = walkTileList[currentPositionIndex];
                 currentTile.DeSelect();
 
-                Damage(currentTile);
+                Interact(currentTile);
 
                 currentTile.TileState = TileState.Empty;
                 currentTile.Monster = null;
@@ -92,10 +92,10 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IDamage
     /// This function applies damage to an object that implements the IDamagable interface.
     /// It calls the TakeDamage function of the damagable object with the specified damage points.
     /// </summary>
-    /// <param name="damagable"></param>
-    public void Damage(IDamagable damagable)
+    /// <param name="interactable"></param>
+    public void Interact(IInteractable interactable)
     {
-        damagable.TakeDamage(_damagePoint);
+        interactable.Interact();
     }
 
     /// <summary>

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tile : MonoBehaviour, IDamagable, ISelectable, IMoveable
+public class Tile : MonoBehaviour, IInteractable, ISelectable, IMoveable
 {
     private TileState _tileState;
     public TileState TileState
@@ -62,9 +62,9 @@ public class Tile : MonoBehaviour, IDamagable, ISelectable, IMoveable
     /// Applies the specified amount of damage to the associated monster.
     /// </summary>
     /// <param name="damage">The amount of damage to be applied.</param>
-    public void TakeDamage(int damage)
+    public void Interact()
     {
-        _monster.TakeDamage(damage);
+        _monster.Interact();
     }
 
     /// <summary>
