@@ -101,18 +101,37 @@ public class Selector : MonoBehaviour
                 LineBetweenTiles.singleton.RemovePointFromLine(lastTile.transform.position);
                 selectedTiles.Remove(lastTile);
             }
-            else if (draggedTile.TileState == TileState.Item &&
-                        draggedTile.ItemType == lastTile.ItemType &&
-                            !selectedTiles.Contains(draggedTile))
+            else if (!selectedTiles.Contains(draggedTile))
             {
-                lastTile.GoTo(draggedTile.transform.position);
-                SelectTile(draggedTile);
+                if (draggedTile.Item.ItemType == ItemType.Weapon ||
+                        draggedTile.Item.ItemType == ItemType.Brick)
+                {
+                    lastTile.GoTo(draggedTile.transform.position);
+                    SelectTile(draggedTile);
+                }
+                else if (draggedTile.Item.ItemType == ItemType.Demon ||
+                    draggedTile.Item.ItemType == ItemType.Troll)
+                {
+                    if (lastTile.Item.ItemType == ItemType.Weapon ||
+                        lastTile.Item.ItemType == ItemType.Brick)
+                    {
+                        lastTile.GoTo(draggedTile.transform.position);
+                        SelectTile(draggedTile);
+                    }
+                    else if (draggedTile.Item.ItemType == lastTile.Item.ItemType)
+                    {
+                        lastTile.GoTo(draggedTile.transform.position);
+                        SelectTile(draggedTile);
+                    }
+                }
             }
         }
         else if (!selectedTiles.Contains(draggedTile))
         {
             SelectTile(draggedTile);
         }
+        //draggedTile.TileState == TileState.Item &&
+        //                draggedTile.ItemType == lastTile.ItemType &&
     }
 
     /// <summary>

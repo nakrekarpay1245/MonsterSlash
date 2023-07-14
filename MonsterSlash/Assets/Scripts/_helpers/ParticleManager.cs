@@ -34,6 +34,7 @@ public class ParticleManager : MonoSingleton<ParticleManager>
     {
         if (particleDictionary.ContainsKey(particleName))
         {
+            //Debug.LogWarning("Particle with name " + particleName + " played!");
             ParticleSystem particleSystem = particleDictionary[particleName];
             particleSystem.transform.position = position;
             particleSystem.Play();

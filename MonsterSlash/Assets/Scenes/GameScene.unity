@@ -174,8 +174,13 @@ MonoBehaviour:
   audioList:
   - Name: Splat
     Clip: {fileID: 8300000, guid: 0e361689d8fba6646b0ccffa260ecf82, type: 3}
-    Volume: 0
-    Pitch: 0
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+  - Name: Activate
+    Clip: {fileID: 8300000, guid: 15e36842a9dfbd246a3ea4109485aaef, type: 3}
+    Volume: 1
+    Pitch: 1
     Loop: 0
 --- !u!1 &474357159
 GameObject:
@@ -736,6 +741,8 @@ MonoBehaviour:
     particleSystem: {fileID: 0}
   - particlePrefab: {fileID: 520623263921853179, guid: 509c0a6faa200034a8e89a38f4ab136f, type: 3}
     particleSystem: {fileID: 0}
+  - particlePrefab: {fileID: 6361646219601632101, guid: 693976187b17c8d4587777a1b500cfd3, type: 3}
+    particleSystem: {fileID: 0}
 --- !u!1 &2118266401
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +790,7 @@ MonoBehaviour:
   itemPrefabList:
   - {fileID: 1350563273312261688, guid: 4e28fa7c283cad047b50d9368ac0cca4, type: 3}
   - {fileID: 8503246218311333092, guid: 2f1e7ce99e8ac274693d82ced60e27f5, type: 3}
+  - {fileID: 749100314852478093, guid: ffc452682961b5349a20299213f24b00, type: 3}
 --- !u!1001 &7109170734076096518
 PrefabInstance:
   m_ObjectHideFlags: 0
