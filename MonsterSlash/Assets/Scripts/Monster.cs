@@ -1,12 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class Monster : AbstractItem, IKillable, IInteractable, IMoveable
+public class Monster : Item, IKillable
 {
-    [SerializeField]
-    private ItemType _monsterType;
-    public ItemType MonsterType { get => _monsterType; private set { } }
-
     [SerializeField]
     private float _health;
 
@@ -25,7 +21,7 @@ public class Monster : AbstractItem, IKillable, IInteractable, IMoveable
     /// This function reduces the object's health by the specified damage amount.
     /// </summary>
     /// <param name="damage"></param>
-    public void Interact()
+    public override void Interact()
     {
         _health--;
         if (_health <= 0)
@@ -33,17 +29,17 @@ public class Monster : AbstractItem, IKillable, IInteractable, IMoveable
             Kill();
             return;
         }
-        PlayHitEffects();
+        //PlayHitEffects();
     }
 
-    /// <summary>
-    /// This function plays the hit effects, such as a splash particle and a sound effect.
-    /// </summary>
-    private void PlayHitEffects()
-    {
-        ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
-        AudioManager.singleton.PlaySound("Splat");
-    }
+    ///// <summary>
+    ///// This function plays the hit effects, such as a splash particle and a sound effect.
+    ///// </summary>
+    //private void PlayHitEffects()
+    //{
+    //    ParticleManager.singleton.PlayParticleAtPoint("BloodParticle", transform.position);
+    //    AudioManager.singleton.PlaySound("Splat");
+    //}
 
     public void Kill()
     {
@@ -74,7 +70,7 @@ public class Monster : AbstractItem, IKillable, IInteractable, IMoveable
         AudioManager.singleton.PlaySound("Splat");
     }
 
-    public void Move(Vector2 targetPosition)
+    public override void Move(Vector2 targetPosition)
     {
         StopCoroutine(MoveRoutine(targetPosition));
         StartCoroutine(MoveRoutine(targetPosition));

@@ -605,7 +605,6 @@ MonoBehaviour:
   MINIMUM_DISTANCE_BETWEEN_TILES: 1.5
   MINIMUM_SELECTION_DISTANCE: 0.25
   TIME_1: 0.2
-  TIME_2: 0.2
 --- !u!1 &1326838365
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,7 +747,7 @@ GameObject:
   - component: {fileID: 2118266402}
   - component: {fileID: 2118266403}
   m_Layer: 0
-  m_Name: MonsterManager
+  m_Name: ItemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,12 +777,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2118266401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20e021a1d1293184cbb6130729682b2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 71a923d9748f3a744ac53763f64a0eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterPrefabList:
-  - {fileID: 1700878144157705474, guid: 4e28fa7c283cad047b50d9368ac0cca4, type: 3}
-  - {fileID: 5692265957513279235, guid: 2f1e7ce99e8ac274693d82ced60e27f5, type: 3}
+  itemPrefabList:
+  - {fileID: 1350563273312261688, guid: 4e28fa7c283cad047b50d9368ac0cca4, type: 3}
+  - {fileID: 8503246218311333092, guid: 2f1e7ce99e8ac274693d82ced60e27f5, type: 3}
 --- !u!1001 &7109170734076096518
 PrefabInstance:
   m_ObjectHideFlags: 0

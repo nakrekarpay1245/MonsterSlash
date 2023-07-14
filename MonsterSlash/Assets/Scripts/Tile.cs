@@ -16,16 +16,16 @@ public class Tile : MonoBehaviour, IInteractable, ISelectable, IMoveable
         set { _tileGridPosition = value; }
     }
 
-    private Monster _monster;
-    public Monster Monster
+    private Item _item;
+    public Item Item
     {
-        get { return _monster; }
-        set { _monster = value; }
+        get { return _item; }
+        set { _item = value; }
     }
 
-    public ItemType MonsterType
+    public ItemType ItemType
     {
-        get { return _monster.MonsterType; }
+        get { return _item.ItemType; }
         private set { }
     }
 
@@ -55,7 +55,7 @@ public class Tile : MonoBehaviour, IInteractable, ISelectable, IMoveable
     /// <param name="targetPosition">The position to which the monster should move.</param>
     public void Move(Vector2 targetPosition)
     {
-        _monster.Move(targetPosition);
+        _item.Move(targetPosition);
     }
 
     /// <summary>
@@ -64,7 +64,7 @@ public class Tile : MonoBehaviour, IInteractable, ISelectable, IMoveable
     /// <param name="damage">The amount of damage to be applied.</param>
     public void Interact()
     {
-        _monster.Interact();
+        _item.Interact();
     }
 
     /// <summary>

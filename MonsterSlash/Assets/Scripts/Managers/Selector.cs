@@ -102,7 +102,7 @@ public class Selector : MonoBehaviour
                 selectedTiles.Remove(lastTile);
             }
             else if (draggedTile.TileState == TileState.Item &&
-                        draggedTile.MonsterType == lastTile.MonsterType &&
+                        draggedTile.ItemType == lastTile.ItemType &&
                             !selectedTiles.Contains(draggedTile))
             {
                 lastTile.GoTo(draggedTile.transform.position);

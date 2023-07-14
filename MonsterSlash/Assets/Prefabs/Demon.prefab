@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5029528060429314784}
   - component: {fileID: 406823786565279070}
-  - component: {fileID: 1700878144157705474}
   - component: {fileID: 4494218060861526371}
+  - component: {fileID: 1350563273312261688}
   m_Layer: 0
   m_Name: Demon
   m_TagString: Untagged
@@ -87,20 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1700878144157705474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7520226523061575722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2263a4ecfe2faf8459ff594611baa362, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _monsterType: 0
-  _health: 1
 --- !u!95 &4494218060861526371
 Animator:
   serializedVersion: 5
@@ -122,6 +108,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1350563273312261688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7520226523061575722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29391c4f9585b3340b7d5942245b5bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemType: 0
+  _health: 1
 --- !u!1 &8014729425067534664
 GameObject:
   m_ObjectHideFlags: 0

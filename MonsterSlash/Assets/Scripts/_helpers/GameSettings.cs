@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "GameSettings", menuName = "Create Game Settings", order = 1)]
 public class GameSettings : MonoSingleton<GameSettings>
 {
     public float MINIMUM_DISTANCE_BETWEEN_TILES = 1.5f;

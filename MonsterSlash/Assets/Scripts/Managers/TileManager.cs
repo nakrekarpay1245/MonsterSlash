@@ -121,9 +121,9 @@ public class TileManager : MonoSingleton<TileManager>
                         if (downTile.TileState == TileState.Empty)
                         {
                             upTile.Move(downTile.transform.position);
-                            downTile.Monster = upTile.Monster;
+                            downTile.Item = upTile.Item;
                             downTile.TileState = TileState.Item;
-                            upTile.Monster = null;
+                            upTile.Item = null;
                             upTile.TileState = TileState.Empty;
                         }
                         else if (downTile.TileState == TileState.Player ||
@@ -136,9 +136,9 @@ public class TileManager : MonoSingleton<TileManager>
                                 if (downTile.TileState == TileState.Empty)
                                 {
                                     upTile.Move(downTile.transform.position);
-                                    downTile.Monster = upTile.Monster;
+                                    downTile.Item = upTile.Item;
                                     downTile.TileState = TileState.Item;
-                                    upTile.Monster = null;
+                                    upTile.Item = null;
                                     upTile.TileState = TileState.Empty;
                                 }
                             }
@@ -164,7 +164,7 @@ public class TileManager : MonoSingleton<TileManager>
 
                 if (tile.TileState == TileState.Empty)
                 {
-                    MonsterManager.singleton.GenerateRandomMonster(tile);
+                    ItemManager.singleton.GenerateRandomItem(tile);
                     tile.TileState = TileState.Item;
                 }
             }

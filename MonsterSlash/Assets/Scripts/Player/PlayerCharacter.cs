@@ -70,7 +70,7 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IInteractor
                 Interact(currentTile);
 
                 currentTile.TileState = TileState.Empty;
-                currentTile.Monster = null;
+                currentTile.Item = null;
 
                 currentPositionIndex++;
                 time_1 -= time_1 / 65f;
