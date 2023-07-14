@@ -23,7 +23,7 @@ public class Tile : MonoBehaviour, IInteractable, ISelectable, IMoveable
         set { _monster = value; }
     }
 
-    public MonsterType MonsterType
+    public ItemType MonsterType
     {
         get { return _monster.MonsterType; }
         private set { }
@@ -103,7 +103,7 @@ public class Tile : MonoBehaviour, IInteractable, ISelectable, IMoveable
 public enum TileState
 {
     Player,
-    Monster,
+    Item,
     Obstacle,
     Empty
 }

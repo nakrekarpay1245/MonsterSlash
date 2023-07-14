@@ -45,7 +45,7 @@ public class MonsterManager : MonoSingleton<MonsterManager>
         generatedMonster.name = randomMonster.name;
 
         parentTile.Monster = generatedMonster;
-        parentTile.TileState = TileState.Monster;
+        parentTile.TileState = TileState.Item;
 
         return generatedMonster;
     }

@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class Monster : MonoBehaviour, IKillable, IInteractable, IMoveable
+public class Monster : AbstractItem, IKillable, IInteractable, IMoveable
 {
     [SerializeField]
-    private MonsterType _monsterType;
-    public MonsterType MonsterType { get => _monsterType; private set { } }
+    private ItemType _monsterType;
+    public ItemType MonsterType { get => _monsterType; private set { } }
 
     [SerializeField]
     private float _health;
@@ -102,10 +102,4 @@ public class Monster : MonoBehaviour, IKillable, IInteractable, IMoveable
             yield return null;
         }
     }
-}
-
-public enum MonsterType
-{
-    Demon,
-    Troll,
 }

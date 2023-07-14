@@ -101,7 +101,7 @@ public class Selector : MonoBehaviour
                 LineBetweenTiles.singleton.RemovePointFromLine(lastTile.transform.position);
                 selectedTiles.Remove(lastTile);
             }
-            else if (draggedTile.TileState == TileState.Monster &&
+            else if (draggedTile.TileState == TileState.Item &&
                         draggedTile.MonsterType == lastTile.MonsterType &&
                             !selectedTiles.Contains(draggedTile))
             {
