@@ -85,7 +85,6 @@ public class TileManager : MonoSingleton<TileManager>
         }
     }
 
-
     /// <summary>
     /// Retrieves the nearest tile to the specified position based on minimum selection distance.
     /// </summary>
@@ -101,6 +100,46 @@ public class TileManager : MonoSingleton<TileManager>
 
         return nearestTile;
     }
+
+    /// <summary>
+    /// Retrieves the nearest tile to the specified position based on minimum selection distance.
+    /// </summary>
+    /// <param name="position">The position to compare with.</param>
+    /// <returns>The nearest tile to the position within the minimum selection distance, or null 
+    /// if no tile is found.</returns>    
+    public Tile GetNearestTile(Vector3 position, Tile exceptTile)
+    {
+        List<Tile> tileList = new List<Tile>(_activeTileList);
+
+        tileList.Remove(exceptTile);
+
+        Tile nearestTile = tileList
+                .OrderBy(tile => Vector3.Distance(tile.transform.position, position))
+                    .FirstOrDefault(tile => Vector2.Distance(tile.transform.position, position) <
+                        GameSettings.singleton.MINIMUM_DISTANCE_BETWEEN_TILES);
+
+        return nearestTile;
+    }
+
+    /// <summary>
+    /// Returns a list of the nearest tiles to the given position, excluding the currentTile.
+    /// </summary>
+    /// <param name="position">The position from which to find the nearest tiles.</param>
+    /// <param name="count">The maximum number of nearest tiles to return.</param>
+    /// <param name="exceptTile">The tile to exclude from the nearest tiles.</param>
+    /// <returns>A list of the nearest tiles to the given position.</returns>
+    public List<Tile> GetNearestTiles(Vector2 position, int count, Tile exceptTile)
+    {
+        List<Tile> tileList = new List<Tile>(_activeTileList);
+
+        tileList.Remove(exceptTile);
+
+        tileList.Sort((a, b) => Vector2.Distance(a.transform.position,
+            position).CompareTo(Vector2.Distance(b.transform.position, position)));
+
+        return tileList.GetRange(0, Mathf.Min(count, tileList.Count));
+    }
+
 
     /// <summary>
     /// Sorts the grid by moving monsters down to fill empty spaces.

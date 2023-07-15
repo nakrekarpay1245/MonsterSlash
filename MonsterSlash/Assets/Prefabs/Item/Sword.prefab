@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemType: 3
+  _attackPointCount: 3
 --- !u!1 &8014729425067534664
 GameObject:
   m_ObjectHideFlags: 0

@@ -64,7 +64,12 @@ public class Tile : MonoBehaviour, IInteractable, ISelectable, IMoveable
     /// <param name="damage">The amount of damage to be applied.</param>
     public void Interact()
     {
-        _item.Interact();
+        if (_item)
+        {
+            _item.Interact();
+            _tileState = TileState.Empty;
+            _item = null;
+        }
     }
 
     /// <summary>

@@ -69,8 +69,8 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IInteractor
 
                 Interact(currentTile);
 
-                currentTile.TileState = TileState.Empty;
-                currentTile.Item = null;
+                //currentTile.TileState = TileState.Empty;
+                //currentTile.Item = null;
 
                 currentPositionIndex++;
                 time_1 -= time_1 / 65f;
@@ -85,6 +85,8 @@ public class PlayerCharacter : MonoSingleton<PlayerCharacter>, IInteractor
         }
 
         playerTile.TileState = TileState.Player;
+
+        yield return new WaitForSeconds(time_1 * 5);
         StopMoving();
     }
 

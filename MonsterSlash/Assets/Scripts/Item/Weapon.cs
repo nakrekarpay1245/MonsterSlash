@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : Item, IActivetable
@@ -25,9 +26,19 @@ public class Weapon : Item, IActivetable
     private IEnumerator ActivateRoutine()
     {
         PlayActivateEffects();
+
         yield return new WaitForSeconds(GameSettings.singleton.TIME_1);
 
+        AttackToAttackPoint();
+
         gameObject.SetActive(false);
+    }
+
+    private void AttackToAttackPoint()
+    {
+        Tile currentTile = TileManager.singleton.GetNearestTile(transform.position);
+        Tile attackTile = TileManager.singleton.GetNearestTile(transform.position, currentTile);
+        attackTile.Interact();
     }
 
     /// <summary>
