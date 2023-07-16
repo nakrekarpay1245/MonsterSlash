@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : Item, IActivetable
@@ -27,7 +26,7 @@ public class Weapon : Item, IActivetable
     {
         PlayActivateEffects();
 
-        yield return new WaitForSeconds(GameSettings.singleton.TIME_1);
+        yield return new WaitForSeconds(GameSettings.singleton.TIME_2);
 
         AttackToAttackPoint();
 
