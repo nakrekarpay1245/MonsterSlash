@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Weapon : Item, IActivetable
+public class WeaponTrigger : Item, IActivetable
 {
     /// <summary>
     /// This function reduces the object's health by the specified damage amount.

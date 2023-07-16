@@ -103,7 +103,7 @@ public class Selector : MonoBehaviour
             }
             else if (!selectedTiles.Contains(draggedTile))
             {
-                if (draggedTile.Item.ItemType == ItemType.Weapon ||
+                if (draggedTile.Item.ItemType == ItemType.WeaponTrigger ||
                         draggedTile.Item.ItemType == ItemType.Brick)
                 {
                     lastTile.GoTo(draggedTile.transform.position);
@@ -112,7 +112,7 @@ public class Selector : MonoBehaviour
                 else if (draggedTile.Item.ItemType == ItemType.Demon ||
                     draggedTile.Item.ItemType == ItemType.Troll)
                 {
-                    if (lastTile.Item.ItemType == ItemType.Weapon ||
+                    if (lastTile.Item.ItemType == ItemType.WeaponTrigger ||
                         lastTile.Item.ItemType == ItemType.Brick)
                     {
                         lastTile.GoTo(draggedTile.transform.position);

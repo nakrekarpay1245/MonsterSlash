@@ -43,5 +43,5 @@ public enum ItemType
     Demon,
     Troll,
     Brick,
-    Weapon
+    WeaponTrigger
 }
