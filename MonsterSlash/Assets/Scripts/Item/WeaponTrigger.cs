@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class WeaponTrigger : Item, IActivetable
 {
+    [Header("Weapon Parameters")]
+    [Tooltip("Weapon to be thrown at the time of attack")]
+    [SerializeField]
+    private Weapon _weapon;
+
     /// <summary>
     /// This function reduces the object's health by the specified damage amount.
     /// </summary>
@@ -38,6 +43,8 @@ public class WeaponTrigger : Item, IActivetable
         Tile currentTile = TileManager.singleton.GetNearestTile(transform.position);
         Tile attackTile = TileManager.singleton.GetNearestTile(transform.position, currentTile);
         attackTile.Interact();
+        _weapon.Activate();
+        _weapon.Move(attackTile.transform.position);
     }
 
     /// <summary>

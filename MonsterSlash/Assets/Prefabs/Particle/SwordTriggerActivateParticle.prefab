@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 506308783557769310}
   - component: {fileID: 3891739970514170397}
   m_Layer: 0
-  m_Name: SwordActivateParticle
+  m_Name: SwordTriggerActivateParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

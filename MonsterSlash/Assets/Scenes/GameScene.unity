@@ -615,6 +615,7 @@ MonoBehaviour:
   MINIMUM_DISTANCE_BETWEEN_TILES: 1.5
   MINIMUM_SELECTION_DISTANCE: 0.25
   TIME_1: 0.2
+  TIME_2: 0.05
 --- !u!1 &1326838365
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,11 +797,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefabList:
   - {fileID: 1350563273312261688, guid: 4e28fa7c283cad047b50d9368ac0cca4, type: 3}
+  - {fileID: 1350563273312261688, guid: 4e28fa7c283cad047b50d9368ac0cca4, type: 3}
+  - {fileID: 1350563273312261688, guid: 4e28fa7c283cad047b50d9368ac0cca4, type: 3}
   - {fileID: 8503246218311333092, guid: 2f1e7ce99e8ac274693d82ced60e27f5, type: 3}
-  - {fileID: 749100314852478093, guid: ffc452682961b5349a20299213f24b00, type: 3}
+  - {fileID: 8503246218311333092, guid: 2f1e7ce99e8ac274693d82ced60e27f5, type: 3}
+  - {fileID: 8503246218311333092, guid: 2f1e7ce99e8ac274693d82ced60e27f5, type: 3}
   - {fileID: 6600575475407318247, guid: 92bd780181e3081458726c9ed04ae605, type: 3}
-  - {fileID: 749100314852478093, guid: ffc452682961b5349a20299213f24b00, type: 3}
-  - {fileID: 749100314852478093, guid: ffc452682961b5349a20299213f24b00, type: 3}
   - {fileID: 749100314852478093, guid: ffc452682961b5349a20299213f24b00, type: 3}
 --- !u!1001 &7109170734076096518
 PrefabInstance:
