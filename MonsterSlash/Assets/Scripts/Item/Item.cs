@@ -23,7 +23,7 @@ public abstract class Item : MonoBehaviour, IMoveable, IInteractable
     public IEnumerator MoveRoutine(Vector2 targetPosition)
     {
         Vector3 startPosition = transform.position;
-        float distance = Mathf.Abs(startPosition.y - targetPosition.y);
+        float distance = Vector2.Distance(startPosition, targetPosition);
 
         float elapsedTime = 0f;
         float fallTime = GameSettings.singleton.TIME_1 * distance;

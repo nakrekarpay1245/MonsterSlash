@@ -5,11 +5,6 @@ using UnityEngine;
 public class TileManager : MonoSingleton<TileManager>
 {
     [Header("Tile Manager Parameters")]
-    [Header("References")]
-    [Tooltip("The tile object that will create the grid")]
-    [SerializeField]
-    private Tile _tilePrefab;
-
     [Header("Grid Parameters")]
     [Header("Grid Scale")]
     [Tooltip("Grid horizontal scale")]
@@ -59,8 +54,8 @@ public class TileManager : MonoSingleton<TileManager>
 
                 Vector2 tilePosition = (new Vector2(x, y) + gridOffset);
 
-                Tile generatedTile = Instantiate(_tilePrefab, tilePosition, Quaternion.identity,
-                    transform);
+                Tile generatedTile = ObjectPoolManager.singleton.GetPooledObject(4,
+                    tilePosition, transform).GetComponent<Tile>();
 
                 Vector2Int tileGridPosition = new Vector2Int(x, y);
 
